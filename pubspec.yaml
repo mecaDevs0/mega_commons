@@ -31,7 +31,7 @@ dependency_overrides:
     #   git:
     #     url: git@github.com:megaleios-git/megaflutter_commons_dependencies.git
     #     ref: 1.7.0
-    path: ../megaflutter_commons_dependencies
+    path: ../mega_commons_dependencies
 
 flutter:
   assets:
