@@ -29,7 +29,7 @@ sealed class MegaModal {
       return;
     }
     final customUrlController =
-        TextEditingController(text: 'https://fabricio-localhost.loca.lt/');
+        TextEditingController(text: '');
     final formKey = GlobalKey<FormState>();
 
     if (!context.mounted) {

@@ -4,6 +4,7 @@ import 'package:mega_commons_dependencies/mega_commons_dependencies.dart';
 
 import '../../../mega_commons.dart';
 import 'interceptor/firebase_performance_interceptor.dart';
+import 'retry_interceptor.dart';
 
 class RestClientDio implements ICustomDio {
   RestClientDio(
@@ -49,8 +50,9 @@ class RestClientDio implements ICustomDio {
   }) {
     final BaseOptions baseOptions = BaseOptions(
       baseUrl: baseUrl,
-      connectTimeout: const Duration(minutes: 1),
-      receiveTimeout: const Duration(minutes: 1),
+      connectTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
+      sendTimeout: const Duration(seconds: 60),
     );
     _dio = Dio(baseOptions);
     _dio.interceptors.add(FirebasePerformanceInterceptor());
@@ -65,6 +67,7 @@ class RestClientDio implements ICustomDio {
       ),
     );
     _dio.interceptors.add(CustomLogInterceptor());
+    _dio.interceptors.add(RetryInterceptor());
     if (customInterceptor != null) {
       _dio.interceptors.add(customInterceptor);
     }
